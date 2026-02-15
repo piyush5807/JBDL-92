@@ -1,3 +1,5 @@
+*.iml
+out/
 target/
 pom.xml.tag
 pom.xml.releaseBackup
@@ -9,7 +11,7 @@ buildNumber.properties
 .mvn/timing.properties
 # https://maven.apache.org/wrapper/#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
-
+.DS_Store
 # Eclipse m2e generated files
 # Eclipse Core
 .project
