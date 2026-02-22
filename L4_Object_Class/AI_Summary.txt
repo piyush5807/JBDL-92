@@ -1,0 +1,33 @@
+Quick recap
+
+The meeting focused on explaining the internal working of HashMap in Java, including how hash codes are calculated and collisions are handled. The instructor demonstrated various scenarios using code examples to illustrate how objects are stored and retrieved in a HashMap, including cases where hash codes are the same and when collisions occur. The discussion covered the difference between checked and unchecked exceptions, how to handle exceptions using try-catch blocks, and the use of finally blocks for resource cleanup. The instructor also explained the new try-with-resources feature introduced in Java 8, which provides a more reliable way to ensure resources are closed properly. The session concluded with an overview of upcoming topics, including streams and multithreading, which will be covered in the next few classes.
+
+
+Next steps
+- GeeksforGeeks: Push the code from this session to GitHub after 7pm.
+
+
+Summary
+
+HashMap Working and Collision Resolution
+GeeksforGeeks explained the internal working of HashMap in Java, focusing on how hash codes are used to determine bucket placement and how collisions are handled through probing and chaining. He demonstrated how different objects with the same hash code can result in collisions, and explained that the efficiency of HashMap depends heavily on the quality of the hash code function. The discussion covered how collisions are resolved through either probing (finding a vacant space) or chaining (creating a linked list at the bucket), and emphasized that the average case time complexity of HashMap operations is O(1) when the hash function is optimal.
+
+
+Java hashCode and System Architecture
+The discussion focused on how the hashCode function in Java works, particularly for the Person class. GeeksforGeeks explained that the default hashCode for objects is based on their memory address, meaning different objects, even with the same name and age, will have different hash codes due to different memory locations. They also explained that native functions like hashCode are implemented in the operating system's C library rather than in the JVM, and described the three-layer system architecture (hardware, OS, application) that enables communication between these layers. The conversation concluded with a brief discussion about why C/C++ is used for OS-level libraries, noting its speed and efficiency compared to higher-level languages like Java and Python.
+
+
+Java HashMap Implementation Overview
+The discussion focused on Java's HashMap implementation and hash code functionality. GeeksforGeeks explained how hash codes are generated based on object values rather than memory addresses, and demonstrated different scenarios where hash codes and equality checks interact. The conversation covered how collisions are handled through chaining or probing, and how customizing hash code and equals methods can control object behavior in hash maps. The discussion concluded with an explanation of the finalize method's purpose and its deprecation in Java 9, along with instructions on how to switch between different Java versions in an IDE.
+
+
+Java Garbage Collection and Exceptions
+The discussion focused on Java's garbage collection mechanism, which uses the Mark and Sweep strategy to delete unused memory. The finalize function is called by the garbage collector before an object is deleted, though its invocation is unpredictable. The finalize function was deprecated in Java 9 due to unreliable execution and potential misuse for critical operations like database connection closure. Instead, Java developers are advised to use try-catch-finally blocks for resource management. The session concluded with an introduction to exception handling, distinguishing between exceptions and errors in Java.
+
+
+Java Exceptions and Error Handling
+The discussion focused on the differences between exceptions and errors in Java programming. Errors are unrecoverable events that cause program failure, such as stack overflow or out-of-memory errors, while exceptions are recoverable events that can be handled by programmers. Exceptions are further categorized into checked and unchecked (runtime) exceptions, with checked exceptions requiring explicit handling in the code. The instructor demonstrated how to handle exceptions using try-catch blocks and the alternative method of delegating exception handling using the 'throws' keyword. The session concluded with an explanation of how exceptions affect the program's exit code and the importance of properly handling different types of exceptions.
+
+
+Java Exception Handling Overview
+The instructor explained Java exception handling, including try-catch blocks, the finally block, and the use of throws and throw keywords. They discussed how exceptions are handled sequentially and how the finally block is executed regardless of an exception occurring. The instructor also covered the try-with-resources feature, which automatically closes resources like file streams, and explained that finalize is deprecated in favor of try-with-resources. The session concluded with an overview of the upcoming topics, including streams and multithreading, which will be covered in the next few classes.
