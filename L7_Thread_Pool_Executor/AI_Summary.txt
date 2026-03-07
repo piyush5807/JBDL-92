@@ -1,0 +1,52 @@
+Quick recap
+
+The meeting focused on multi-threading concepts, specifically discussing the use of thread pool executors and fork join pools for managing tasks efficiently. The instructor explained the differences between using Runnable and Callable interfaces, demonstrating how to submit tasks to an executor service and handle exceptions in asynchronous programming. They covered the importance of properly shutting down executor services and managing thread lifecycles. The discussion included practical examples of calculating factorials in parallel versus sequentially, highlighting performance differences between thread pool executors and fork join pools. The instructor also clarified the distinction between multi-threading and asynchronous programming, explaining how both concepts are used in modern programming. The session concluded with plans to cover thread safety and synchronization in the next class, along with a brief mention of upcoming topics like Maven and generics.
+
+
+Next steps
+- GeeksforGeeks: Push the code from this class (and previous class) to the shared repository within 15-20 minutes.
+- All participants: Clone the code and review it after the recording is uploaded.
+- GeeksforGeeks: Cover thread safety (critical sections, synchronized blocks), generics, and revisit parallel streams with custom thread pool executor in the next class.
+
+
+Summary
+
+Thread Pool Executor Discussion
+The instructor continued a discussion on multi-threading, focusing on efficient thread management using thread pool executors. They explained that creating a new thread for each task can be inefficient, especially when dealing with large numbers of tasks, due to excessive context switching. Instead, they demonstrated how to use thread pool executors to manage a fixed number of threads, allowing tasks to be distributed among them optimally. 
+The instructor also covered how to create a thread pool with the same number of threads as available processors, minus one for the main thread, and explained the parameters for configuring thread pools, such as core pool size and keep-alive time.
+
+
+Executor Service vs Executors Overview
+GeeksforGeeks explained the difference between Executor Service and Executors, noting that Executor Service is an interface with various implementations like ThreadPoolExecutor and ForkJoinPool. They discussed how to choose between these implementations based on their differences in thread management and performance. GeeksforGeeks also explained the use of Runnable and Callable interfaces for submitting tasks to an executor service, and demonstrated how to use Future objects to handle asynchronous task execution and retrieve results. They showed that while the code appears sequential, it actually runs in parallel, and discussed the importance of shutting down the executor service after use.
+
+
+Java Thread Pools Explanation
+The discussion focused on explaining how thread pools work in Java's ExecutorService, using a factorial calculation example to demonstrate the efficiency of managed thread pools compared to manually managing threads. GeeksforGeeks explained that thread pools automatically manage the number of threads based on available processors, showing through performance measurements that while increasing the number of threads might seem beneficial, it can actually lead to performance degradation due to context switching. The conversation concluded with a suggestion to explore different executor services like ForkJoinPool for better performance in certain scenarios.
+
+
+ThreadPool vs ForkJoinPool Performance
+Kratik explained the differences between ThreadPoolExecutor and ForkJoinPool, demonstrating that ForkJoinPool outperforms ThreadPoolExecutor for CPU-bound tasks due to its work-stealing algorithm and decentralized task queues. He showed how to debug multi-threaded applications by setting breakpoints and examining thread states, and discussed how to handle exceptions in individual threads. Kratik also explained that while ThreadPoolExecutor is better suited for I/O-bound tasks, ForkJoinPool is more efficient for CPU-intensive tasks.
+
+
+Exception Handling in Multithreaded Java
+The discussion focused on handling exceptions in multithreaded applications using Java's ExecutorService. Abhijeeet explained that when a thread throws an unhandled exception, the JVM cannot shut down properly, leaving non-daemon threads in a running state. He demonstrated that properly handling exceptions either in the main thread or within the thread itself, and ensuring the ExecutorService is shut down correctly, prevents this issue. Abhijeeet emphasized that developers must manage exceptions and executor services elegantly to avoid blocking the application and ensure proper shutdown.
+
+
+Executor Service Shutdown Issues
+GeeksforGeeks explained why the executor service did not shut down properly, highlighting that the service.shutdown() method was not working due to an unhandled exception in the future.get() call. They demonstrated that while some tasks were completed successfully, the program failed to calculate the factorial of 10, resulting in an exception. Kratik asked about the flow of the main thread and how it continued to print results despite the error, to which GeeksforGeeks clarified that the results were printed by different threads, and the exception was caught in a specific thread.
+
+
+Future Exceptions Handling Demonstration
+GeeksforGeeks explained how exceptions thrown by tasks in a Future are not immediately visible unless Future.get() is called, and demonstrated that exceptions are stored in the Future's outcome field. They showed that even if a thread throws an exception, it can continue executing other tasks in the executor pool, as demonstrated by thread 10 which threw an exception while computing the factorial of 10 but then proceeded to execute task 11.
+
+
+Java ExecutorService and Task Types
+The discussion focused on Java's ExecutorService and the differences between Callable and Runnable tasks. GeeksforGeeks explained that Callable tasks return a Future object, while Runnable tasks do not, and demonstrated how to use Lambdas instead of anonymous inner classes for cleaner code. The conversation then explored how shutdown() method works with ExecutorService, clarifying that it initiates an orderly shutdown allowing previously submitted tasks to complete before stopping new submissions, as demonstrated through a sample program that printed numbers after a sleep delay.
+
+
+ThreadPoolExecutor Shutdown Behavior Discussion
+GeeksforGeeks explained the behavior of a ThreadPoolExecutor when tasks are submitted after shutdown, demonstrating that once shutdown is initiated, no new tasks can be added to the executor, even if they are lightweight. They showed that attempting to submit a task after shutdown results in a RejectedExecutionException. Kratik asked if an executor with the same name could be restarted, and GeeksforGeeks clarified the difference between shutdown and shutdownNow methods, explaining that shutdownNow does not wait for actively executing tasks to terminate and returns a list of tasks that never commenced execution.
+
+
+Multi-Threaded Programming Concepts
+The instructor discussed concepts related to multi-threading and asynchronous programming, explaining the differences between multi-threading and asynchronous programming, and how ThreadPoolExecutor uses both concepts. They covered the use of futures for asynchronous computation and the self-explanatory nature of functions in executor service classes. The instructor mentioned that thread safety, synchronization, and volatile keywords would be covered in the next class, and they planned to revisit parallel streams and configure a custom thread pool executor for them. They also suggested resources for practicing these concepts, including a website called Baeldung, and mentioned that they would cover generics in the next session.
