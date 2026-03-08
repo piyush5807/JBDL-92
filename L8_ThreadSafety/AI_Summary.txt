@@ -1,0 +1,45 @@
+Quick recap
+
+This was a detailed technical session on thread safety and multi-threading concepts led by GeeksforGeeks. The session covered thread safety challenges, particularly race conditions when multiple threads access shared resources simultaneously. GeeksforGeeks explained the concept of critical sections using bank account examples and demonstrated how synchronized keywords can ensure thread safety by making code execution sequential. The discussion included practical code examples showing the implementation of synchronized methods and blocks, along with explanations of when to use volatile keywords for memory visibility. The session also covered parallel streams versus sequential streams, including how parallel streams use the Fork/Join pool and the importance of understanding that stream results depend on three key factors: terminal functions, data structure types, and stream types (sequential vs parallel). GeeksforGeeks provided hands-on demonstrations of these concepts using Java code examples throughout the session.
+
+
+Next steps
+- GeeksforGeeks: Push the code on GitHub after the class.
+
+
+Summary
+
+Thread Safety and Race Conditions
+The instructor discussed thread safety and the critical section problem using a bank account example. They explained how race conditions can occur when multiple threads access and modify shared resources simultaneously. The instructor then demonstrated creating a simple Java program to illustrate this concept, including a BankAccount class with deposit and withdraw methods, and two threads that attempt to modify the same account balance concurrently. They also showed how to pass parameters to threads and use a boolean flag to determine whether the thread should deposit or withdraw funds.
+
+
+Resolving Race Conditions in Banking
+The discussion focused on understanding and resolving race conditions in a multi-threaded banking application. GeeksforGeeks explained how race conditions occur when multiple threads access shared resources, using a simple example of deposit and withdrawal operations. Kratik clarified that while the operations might appear thread-safe due to their speed, they are not reliable when threads sleep or execute slowly. The team discussed that race conditions only arise when multiple threads access the same resource, and demonstrated this by creating separate account objects to show consistent results. The conversation concluded with a question about whether it's possible to ensure threads don't encounter race conditions when accessing shared resources, which remains an open question.
+
+
+Java Thread Synchronization Basics
+The discussion focused on understanding thread execution and critical sections in Java. The speaker explained that adding the synchronized keyword to functions makes them act as critical sections, ensuring that only one thread can execute the code at a time to prevent race conditions and maintain data consistency. They also clarified that while threads can execute in parallel in the entry section, they will execute sequentially in the critical section, which is necessary when working with shared resources.
+
+
+Java Synchronized Methods Explained
+GeeksforGeeks explained the concept of synchronized blocks and methods in Java, demonstrating how they ensure thread safety by managing access to shared resources. They showed that using synchronized at the method level or block level can affect the sequential execution of code, and emphasized the importance of analyzing which parts of the code should be parallel or sequential. The discussion also covered how synchronized works with static methods and shared resources, and included a question about logging behavior with static methods, which GeeksforGeeks addressed by providing an example with a DBConnection class.
+
+
+Java Synchronization Techniques Explained
+GeeksforGeeks explained how synchronization works in Java, using a class-level lock to ensure that only one thread can execute a static function at a time. They demonstrated that when a class is locked, only one thread can enter the critical section, preventing concurrent access to shared resources. Kratik asked about instance variables and whether locking the class also locks objects, to which GeeksforGeeks clarified that locks can be taken at either the class or object level, depending on the scope of the variables being accessed.
+
+
+Thread Synchronization in Java
+GeeksforGeeks explained the behavior of threads executing sequential operations and emphasized the importance of using the synchronized keyword to achieve consistency and avoid race conditions. They discussed the application of synchronized keyword in Java's Thread class to prevent race conditions when creating and naming threads. GeeksforGeeks also provided an example of using synchronized keyword in a deposit and withdraw scenario to ensure thread safety. Finally, they explained the potential issues that can arise when using HashMap in multithreaded environments and demonstrated how to use synchronized keyword to avoid these problems.
+
+
+Concurrent HashMap vs ConcurrentHashMap
+GeeksforGeeks demonstrated a comparison between a regular HashMap and a ConcurrentHashMap by showing how multiple threads can overwrite data in a non-synchronized HashMap but not in a synchronized ConcurrentHashMap. They explained that while the put method in HashMap is not synchronized, the putValue method in ConcurrentHashMap is, which prevents data collisions. The demonstration included adding and removing elements from the map using different threads, though the results were difficult to observe without introducing artificial delays.
+
+
+Java Data Structures and Synchronization
+The discussion focused on Java's legacy data structures and the differences between HashMap and ConcurrentHashMap. The instructor explained that ConcurrentHashMap is a performance improvement over HashMap, offering better thread safety through block-level synchronization rather than full function-level synchronization. The conversation then moved to the volatile keyword, which ensures that threads read and write directly to main memory rather than local storage, preventing inconsistencies but not providing full synchronization guarantees. The instructor demonstrated a practical example showing that volatile can help with thread coordination but cannot replace synchronization for critical sections of code.
+
+
+Java Concurrency and Parallel Streams
+The instructor discussed the volatile keyword in Java, explaining its use for ensuring that threads always read and write values from main memory rather than local thread contexts, though it cannot replace the synchronized keyword. They demonstrated parallel streams and thread pool executors, showing how to configure parallelism and explaining that parallel streams can only use the ForkJoinPool executor service, not custom executor services. The instructor also covered how the results of stream operations depend on terminal functions, data structures, and stream types, and addressed questions about thread behavior in parallel streams. The session concluded with plans to cover Generics in the next Saturday session and begin Maven as a build tool, with Core Java nearly complete.
