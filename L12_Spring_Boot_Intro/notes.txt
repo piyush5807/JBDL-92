@@ -1,0 +1,51 @@
+
+
+scope - refers to the visibility of the dependency
+
+1. compile - available in all the lifecycles + also part of the jar that is built
+
+2. Test - only for testing (not for compiling the main folder's code)
+
+3. runtime - not needed for compilation but needed during runtime
+
+4. provided - available during the compilation, but not packaged in the jar
+
+
+Types of application servers:
+1. Tomcat - default choice present in spring boot starter web dependency (Apache)
+2. Jetty - (Eclipse)
+3. Undertow - (Red Hat)
+
+
+Ques, If I have all three embedder servers, which one will run
+A: Tomcat
+B: Jetty
+C: Undertow
+D: Error
+
+
+spring-boot-starter-web --> present since spring boot 2.X - present now also
+
+spring-boot-starter-webmvc --> launched in spring boot 4.X only
+
+API - Application Programming Interface
+
+
+Attributes associated with APIs
+1. Domain - this represents the company's unique domain which is used to host any services on cloud or otherwise also
+2. Path / Endpoint - This represents the unique action that a user would want to take   (Ex: shopping.amazon.in/add-item, shopping.amazon.in/delete-item)
+Request URL - Domain + Path
+
+3. HTTP Method / Request Method - Identifier given by the backend to the frontend to distinguish which type of action they are going to take
+POST - STORE / UPLOAD / ADD some data on the server
+GET - RETRIEVE / FETCH some data from the server
+PATCH / PUT - UPDATE some existing data on the server
+DELETE - DELETE some existing data on the server
+
+4. Request Headers - Extra data / metadata which the client sends to the server. This data is not the
+input data that server is expecting from client, but kind of metadata which helps in doing some important things
+
+5. Response Headers - Extra data / metadata which the server sends to the client. This data is not the
+                      output data that client is expecting from server, but kind of metadata which helps client in doing
+                      some important things
+6. Payload / Body - Client sends the input data in form of body to the server basis which server takes certain action

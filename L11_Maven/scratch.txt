@@ -1,0 +1,32 @@
+Every plugin will have few goals to execute
+
+goals will be defined like this
+
+<plugin-name>:<goal-name>
+
+
+phase       =>          plugins     =>      goal
+mvn clean               clean               clean
+mvn validate
+mvn compile             resources           resources
+                        compiler            compile
+
+mvn test                resources           testResources        (Copy all the resource files from test/resources dir --> )
+                        compiler            testCompile          (Compiles all the classes in the test directory)
+                        surefire            test                 (Runs all the test cases present in any file in test directory)
+
+mvn package             jar                 jar                 (Create a JAR in the target folder)
+mvn verify
+
+mvn install             install             install             (Installs the jar file and the pom.xml in maven's local repository)
+mvn site                site                site                (Adds the site folder / directory inside your target folder)
+mvn deploy              deploy              deploy              (Push the artifacts to the remote repository)
+
+
+Note: Site is an independent phase which creates your code's documentation and when you execute this, none of the previous lifecycles are executed in this phase
+
+
+Archetype - Combination of groupId, artifactId and version
+
+war - web application archive
+jar - java archive - most used packaging type where developers want to package their backend applications which have mostly .java files

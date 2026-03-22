@@ -1,0 +1,13 @@
+#key=value
+#server.port=8080
+#server.numOfThreads=10
+#server.timeout=3s
+
+server:
+  port: 8080
+  numberOfThreads: 10
+  timeout: 3s
+
+key: value
+
+

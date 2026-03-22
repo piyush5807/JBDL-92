@@ -1,0 +1,11 @@
+server:
+  port: 8080
+  numberOfThreads: 10
+  timeout: 3s
+
+key: value
+
+# .doc .docx
+# jpeg jpg
+# ppt pptx
+# yml yaml

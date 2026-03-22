@@ -1,0 +1,49 @@
+Quick recap
+
+This was a detailed technical session led by GeeksforGeeks where they explained how to create and configure Spring Boot applications as web servers. The session covered the fundamental differences between command-line applications and server applications, demonstrating how to add embedded servers like Tomcat, Jetty, and Undertow to a Spring Boot application. GeeksforGeeks explained the concept of starter dependencies, showing how Spring Boot Starter Web provides the necessary components to run an embedded server. The session included a practical demonstration of configuring different server ports and explaining the relationship between domain names, paths, and HTTP methods in API development. The instructor also covered how multiple concurrent requests are handled through worker threads, showing through debugging how requests are processed in parallel by a thread pool. The session concluded with an explanation of the difference between servlets and servers, with servlets being individual threads that listen for requests and servers being the overall process that contains these servlets.
+
+
+Next steps
+- GeeksforGeeks: Push the code of yesterday's and today's class after the meeting.
+
+
+Summary
+
+Spring Boot Server Configuration Overview
+GeeksforGeeks explained the difference between running a basic Spring Boot application and configuring it as a server. He demonstrated how adding the Spring Boot Starter Web dependency transforms the application from a command-line application to one with an embedded Tomcat server, which listens for HTTP requests on port 8080 by default. The discussion clarified that while Spring Boot is not a server itself, it provides the framework to connect Java code with an embedded server like Tomcat, eliminating the need for separate processes.
+
+
+Spring Boot Server Configuration Demo
+GeeksforGeeks explained how to configure and change the server port in a Spring Boot application, demonstrating the use of properties files and the difference between custom and Spring-aware properties. They also discussed different types of embedded application servers available, including Tomcat, Jetty, and Undertow, and showed how to switch between them by excluding and including specific dependencies in the project's configuration. The session included a demonstration of how to exclude Tomcat and add Jetty or Undertow, highlighting the transitive dependencies involved and the role of Maven in managing these dependencies efficiently.
+
+
+Project Version and Dependencies Discussion
+Kratik asked about changes to the base version of the project, and GeeksforGeeks explained that they changed it from 4.0.4 to 3.x due to lack of support for version 4 in some dependencies. GeeksforGeeks demonstrated how to exclude parent dependencies in POM.xml and explained the relationship between Spring Boot Starter Web and embedded servers like Tomcat. The discussion concluded with GeeksforGeeks asking a question about what would happen if multiple embedded servers (Tomcat, Jetty, and Undertow) were included in the project, leaving the answer open for discussion.
+
+
+Spring Boot Version Priority Changes
+Rahul and GeeksforGeeks discussed the priority changes in Spring Boot versions regarding server containers like Tomcat, Jetty, and Undertow. They noted that in Spring Boot 3.x, Tomcat has priority, while in Spring Boot 4.x, Jetty takes precedence over Tomcat when both are defined. They also explained the difference between Spring Boot Starter dependencies and framework dependencies, clarifying that Starter dependencies are abstractions that include both the framework and additional boilerplate code.
+
+
+Spring Boot Dependencies Discussion
+Kaushal and GeeksforGeeks discussed Spring Boot dependencies, focusing on the differences between Spring Boot Starter Web and Spring Boot Starter WebMVC. GeeksforGeeks explained that Spring Boot Starter Web is more versatile, working with both newer (4.x) and older (3.x) versions, while Spring Boot Starter WebMVC is specific to version 4.x. They clarified that Spring MVC and WebMVC refer to the same model-view-controller architecture used in Spring Web applications. The discussion also covered how Spring Boot Starter dependencies provide abstractions over underlying dependencies like Lettuce for Redis.
+
+
+Spring Boot Logging Mechanisms
+GeeksforGeeks explained how logging in a Spring Boot application displays class and package information, demonstrating that the system uses class references to print logs and may truncate package names when space is limited. When asked about why logs appear from specific packages, GeeksforGeeks clarified that internal function calls use the main application class reference to generate logs, even if not explicitly defined. The discussion then shifted to explaining what APIs are, describing them as endpoints that allow client-server communication, with GeeksforGeeks preparing to provide an example using the browser's inspect window.
+
+
+Browser Developer Tools Overview
+GeeksforGeeks explained the functionality of browser developer tools, particularly focusing on the inspect element feature and its components like HTML, console, sources, and network tabs. They demonstrated how to use these tools to view API calls and explained the structure of HTTP requests, including domains, paths, and HTTP methods. The discussion included examples from Google and GeeksforGeeks domains to illustrate how different subdomains and paths can direct traffic to different servers or API gateways.
+
+
+HTTP Methods and API Conventions
+The discussion focused on explaining HTTP request methods and API conventions. GeeksforGeeks explained the differences between POST, PUT, and PATCH methods, noting that while conventions exist for how these should be used (e.g., POST for storing data, PUT/PATCH for updating), servers won't generate errors if these conventions aren't followed. The explanation included details about when to use PUT versus PATCH, with Kaushal contributing that the choice depends on whether the resource should be fully replaced or partially updated, and whether the API should be idempotent. The session concluded with an introduction to request and response headers, and a question about where server requests are executed (though the answer was cut off at the end of the transcript).
+
+
+Web Server Thread Pool Management
+The discussion focused on how web servers handle multiple concurrent requests using worker threads from a thread pool rather than the main thread. Rajiv explained that while the main thread runs the server application, incoming requests are handled by separate worker threads, with the number of concurrent threads limited by the server's infrastructure. He demonstrated this concept by creating a simple API that returns "hello world" and showed how different worker threads (labeled as NIO7001Exec1, NIO7001X6, etc.) handle consecutive requests, confirming that the main thread remains active while requests are processed by these worker threads.
+
+
+Java Concurrent Requests Handling Mechanism
+GeeksforGeeks explained how Java web applications handle multiple concurrent requests using a servlet engine with a thread pool. He demonstrated that while the main thread runs continuously, individual requests are handled by separate executor threads from a pool, with only one thread actively running at a time while others wait for new requests. The discussion covered how response headers are used to transmit additional metadata like cookie information and response length, and clarified the difference between servlets (threads) and servers (processes). GeeksforGeeks also addressed questions about thread management, payload data transmission, and the separation of frontend and backend servers within a domain structure.

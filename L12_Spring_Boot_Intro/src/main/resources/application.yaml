@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: intro
+
+server:
+  port: 7001
+
+
+# custom property : user generated property which spring boot does not understand and the user has to write the code to handle these properties if they want to
+
+# spring aware property : predefined property which spring boot understands
