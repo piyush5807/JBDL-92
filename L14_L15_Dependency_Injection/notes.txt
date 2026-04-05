@@ -1,0 +1,145 @@
+
+Spring boot has 2 main pillars
+
+1. IOC - Inversion of Control
+
+BeanFactory / Application Context ==>  IOC container
+
+(synchronized (keyword) ==> critical section)
+
+2. DI - Dependency Injection
+Phenomenon to inject the dependency that is already created by spring boot
+
+@AutoWired - used for dependency injection. DI is exhibited by @Autowired keyword.
+
+Bean - Object created by spring boot during the application startup or otherwise as well and managed by spring boot itself.
+
+DemoController - bean
+DemoService - bean
+String - bean
+
+
+------------------------
+
+Types of DI
+1. Field Injection -
+
+2. Constructor Injection -
+
+3. Setter Injection - @Autowired annotation on top of setter function is mandatory whereas in constructor it's not mandatory
+
+
+Field vs Constructor
+
+Field injection always happen after the constructor is executed, so if we want to do something on the autowired object in the constructor,
+we should avoid using field injection
+
+
+Bean Scope - Every bean that is created by spring boot has a scope, by default it's singleton that means
+spring boot will create only 1 instance of that bean and will use it for autowiring at multiple places.
+
+Prototype - SB does not create an instance of this bean, as it is not singleton, infact it creates instances on need basis
+i.e whenever some class auto wires a prototype scoped bean, SB will create an object for it.
+
+
+-------
+Engine -
+com.example.dependency_injection.Engine@39008c9f (VehicleService)
+com.example.dependency_injection.Engine@363a3d15 (VehicleService2)
+
+
+Wheel -
+com.example.dependency_injection.Wheel@162b3d47
+com.example.dependency_injection.Wheel@162b3d47
+
+
+---------------
+
+beginning - tools.jackson.databind.ObjectMapper@7c8f9c2e
+
+tools.jackson.databind.ObjectMapper@7c8f9c2e
+tools.jackson.databind.ObjectMapper@7c8f9c2e
+tools.jackson.databind.ObjectMapper@7c8f9c2e
+
+
+CustomBean - singleton ? Because there's no scope annotation on top of this class
+getMapper - prototype ? Because there's a prototype scope mentioned on top of this function
+
+Q. What are we doing in demoController ?
+A. We are autowiring CustomBean(singleton bean) at a class level. And then inside the API, we are using this object to invoke
+   getMapper function which is a prototype bean
+
+
+-----------------------------------------------
+
+Scenario 1 : DemoController -  Autowiring the configuration class and then inside API we are invoking a function of config class
+
+Case 1: Config class - Singleton       Bean Function inside config class - Singleton  ==> 1
+
+dc2 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@341b954f, objectMapper - tools.jackson.databind.ObjectMapper@7efe7b87
+dc1 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@341b954f, objectMapper - tools.jackson.databind.ObjectMapper@7efe7b87
+
+Case 2: Config class - Prototype       Bean Function inside config class - Singleton  ==> 1
+
+dc2 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@341b954f, objectMapper - tools.jackson.databind.ObjectMapper@7efe7b87
+dc1 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@70efb8d5, objectMapper - tools.jackson.databind.ObjectMapper@7efe7b87
+
+Case 3: Config class - Singleton       Bean Function inside config class - Prototype  ==> Multiple (each for an API call)
+
+dc1 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@61d8a36b, objectMapper - tools.jackson.databind.ObjectMapper@68292d1e
+dc2 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@61d8a36b, objectMapper - tools.jackson.databind.ObjectMapper@727b9687
+
+
+Case 4: Config class - Prototype       Bean Function inside config class - Prototype  ==> Multiple (each for an API call)
+
+dc1 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@415ec6d4, objectMapper - tools.jackson.databind.ObjectMapper@45614aa0
+dc2 => com.example.dependency_injection.CustomBean$$SpringCGLIB$$0@5420f91, objectMapper - tools.jackson.databind.ObjectMapper@63bf792e
+
+---------------------------------------------------------------------
+
+Scenario 2: DemoController -  Instead of autowiring the configuration class and then inside API invoke a function of config class, directly autowire function level bean
+
+Case 1: Config class - Singleton   Bean Function inside config class - Singleton
+dc1 => com.example.dependency_injection.Person@2d82408 -> com.example.dependency_injection.Person@2d82408
+dc2 => com.example.dependency_injection.Person@2d82408 -> com.example.dependency_injection.Person@2d82408
+
+Case 2: Config class - Singleton   Bean function inside config class - Prototype
+dc1 => com.example.dependency_injection.Person@7a389761 -> com.example.dependency_injection.Person@7a389761
+dc2 => com.example.dependency_injection.Person@3ce53f6a -> com.example.dependency_injection.Person@3ce53f6a
+
+Case 3: Config class - Prototype   Bean function inside config class - Singleton
+dc1 => com.example.dependency_injection.Person@f679798 -> com.example.dependency_injection.Person@f679798
+dc2 => com.example.dependency_injection.Person@f679798 -> com.example.dependency_injection.Person@f679798
+
+Case 4: Config class - Prototype   Bean function inside config class - Prototype
+dc1 => com.example.dependency_injection.Person@1daf3b44 -> com.example.dependency_injection.Person@1daf3b44
+dc2 => com.example.dependency_injection.Person@8f2098e -> com.example.dependency_injection.Person@8f2098e
+
+@Qualifier - Annotation which is given on the consumption side (where the dependency needs to be injected to let SB know which dependency to inject)
+@Primary - Annotation which is used on the production side (where we are defining the beans to let SB know which bean to prioritise during injection)
+
+
+----------------------
+
+com.example.dependency_injection.Person@2b9f74d0 -> @bean
+
+com.example.dependency_injection.Person@2a4a4a8  -> @component
+
+---------------------------------------
+
+com.example.dependency_injection.Person@44c13103 --> @Bean
+com.example.dependency_injection.Person@44c13103 --> @Bean
+
+com.example.dependency_injection.Person@604d4896 --> @Component
+
+
+
+
+
+
+
+
+
+
+
+

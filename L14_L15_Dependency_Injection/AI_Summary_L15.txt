@@ -1,0 +1,33 @@
+Quick recap
+
+This was a detailed technical session on Spring Boot dependency injection, where GeeksforGeeks explained different types of dependency injection including field injection, constructor injection, and setter injection. The session covered how setter injection works using reflections API and demonstrated the differences between constructor and setter injection approaches. GeeksforGeeks also explained how to create beans for predefined classes using configuration annotations, showing four different scenarios based on whether configuration classes and bean functions are marked as singleton or prototype. The discussion included detailed explanations of the @Bean annotation, @Qualifier annotation for resolving ambiguity between multiple beans of the same type, and @Primary annotation for prioritizing beans. The session concluded with an overview of annotation boilerplate concepts like @Target and @Retention, and explained the differences between older @RequestMapping annotations versus newer method-specific annotations like @GetMapping.
+
+
+Next steps
+- GeeksforGeeks: Push today's and yesterday's code to GitHub for team reference.
+
+
+Summary
+
+Setter Injection Demonstration Meeting
+The meeting focused on explaining different types of dependency injection, with a particular emphasis on setter injection. The presenter demonstrated how setter injection works by creating a VehicleService class with an engine property and a Wheel class, showing how the engine dependency is injected during application startup. The presenter noted that while setter injection is possible, it's not commonly used for object-specific dependencies like engines, as it's more suitable for configuration settings that remain constant throughout an object's lifecycle. The demonstration also revealed that when multiple dependencies are injected, only certain setter methods are executed during application startup, with some dependencies being injected later.
+
+
+Spring Boot Injection Methods Comparison
+Aditya explained the differences between constructor and setter injection in Spring Boot, highlighting that setter injection requires the @Autowired annotation to be mandatory, whereas constructor injection does not. He demonstrated that when using setter injection, if the @Autowired annotation is omitted, an error occurs because the expected bean type is not found. Aditya also discussed the preferred use of constructor injection over setter injection, noting that constructor injection is better suited for cases where the auto-wired variable needs to be operated on within the constructor.
+
+
+Spring Boot Dependency Injection Concepts
+GeeksforGeeks explained the concept of dependency injection in Spring Boot, clarifying that auto-wiring happens at the class level, not function level, and demonstrated how a single object is shared across multiple classes when using singleton scope. The discussion addressed questions from Kratik about dependency injection requirements and manual object creation, with GeeksforGeeks explaining that dependency injection only works when Spring Boot creates objects and they are registered in the IOC container. Kaushal asked about the relationship between dependency injection and strategy pattern, which GeeksforGeeks confirmed was similar, and explained how Java's reflection API works internally to implement these concepts at runtime.
+
+
+Spring Boot Dependency Injection Mechanism
+The discussion focused on how Spring Boot's dependency injection works at a core Java level using Reflections API. GeeksforGeeks explained that while annotations like @Service and @Component appear as interfaces without implementations, Spring uses reflection to discover and configure classes. The conversation then addressed why static fields cannot be used with dependency injection, clarifying that static variables are initialized when the class loads in JVM, before Spring creates objects. Finally, the discussion covered creating custom beans by defining a class with a method that returns an instance of the desired class, demonstrating how to properly wire and use these custom beans in a Spring application.
+
+
+Spring Boot Annotations Demonstration
+Kratik demonstrated the difference between using component and configuration annotations in Spring Boot. When using component annotation, a new object is created each time the function is called, resulting in multiple instances. However, when using configuration annotation with @Bean, a singleton bean is created during application startup, and the same object is reused for subsequent function calls. Kratik explained that the bean name in this case is derived from the function name rather than the class name, and showed how to customize the bean name if needed. The discussion concluded with an exploration of what would happen if the scope was changed to prototype, leaving the question open for future exploration.
+
+
+Spring Boot Bean Scopes Discussion
+The discussion focused on understanding Spring Boot's bean scopes and auto-wiring mechanisms. GeeksforGeeks explained how bean creation and injection work at both class and function levels, demonstrating through code examples the differences between singleton and prototype scopes. The conversation covered two main scenarios: auto-wiring configuration classes versus directly auto-wiring bean functions, with each having four possible permutation combinations based on whether the configuration class and bean function scopes are singleton or prototype. The discussion also included explanations of Spring Boot annotations like @Qualifier and @Primary for resolving dependency injection ambiguities, and briefly touched on the differences between @RequestMapping and specific HTTP method annotations like @GetMapping.
