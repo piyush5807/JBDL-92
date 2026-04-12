@@ -1,0 +1,53 @@
+
+Logging levels
+
+1. ERROR
+2. WARN
+3. INFO
+4. DEBUG
+5. TRACE
+
+Environments
+
+End user environment
+1. Production - Would be present in all the companies : Handles the live users of the system
+MySQL DB - 1 TB 32 GB RAM  --> x y
+Zomato App ~ 10M DAU
+
+
+Lower Configuration environments
+-------------------
+
+2. Staging
+MySQL DB - 10 GB , 8 GB RAM --> a b
+Zomato Devs + QA + Product ~ 2000
+
+3. Preprod
+4. UAT
+5. Dev
+
+if(env == prod){
+    url = jdbc:mysql://x:y/food
+}else{
+    url = jdbc:mysql://a:b/food
+}
+
+Profiling...
+
+
+If the user has defined multiple active profiles, it tries to do the union of all the properties mentioned in all the active profiles
+and if there's a property which is present in multiple profiles, then SB uses the last active profile's property value
+
+
+---------------------------
+
+spring.config.name --> Used to change the name of configuration files
+spring.profiles.active --> Used to define all the active profiles that SB should consider while running your application during runtime
+
+
+-----------------------------
+
+Auto Configuration
+
+-- predefined properties
+-- custom properties

@@ -1,0 +1,51 @@
+Quick recap
+This was a detailed technical class on Spring Boot fundamentals, focusing on logging mechanisms and inversion of control (IoC) concepts. The instructor explained different logging levels (error, warning, info, debug, trace) and demonstrated how to configure logging levels in Spring Boot applications. The class covered how Spring Boot creates objects through inversion of control, using a controller example to show how non-static methods require object creation and how Spring Boot manages this process. The instructor explained the difference between REST Controller and Controller annotations, including the role of response body handling and message converters for JSON transformation. The session concluded with an overview of upcoming topics including beans, IOC container, dependency injection, and auto-configuration in future classes.
+
+
+Next steps
+- GeeksforGeeks: Push the demo code to GitHub after the class.
+- All participants: Review the recording of this class before the next session.
+- All participants: Feel free to ask any doubts in the WhatsApp group or before the next class if questions arise.
+- GeeksforGeeks: Post the link to the WhatsApp group in the chat (already done during class, but requested by Kratik).
+
+
+Summary
+
+Spring Boot Project and Logging
+The meeting focused on understanding Spring Boot project creation and logging mechanisms. The instructor demonstrated how to create a new Spring Boot project using start.spring.io initializer with Maven as the build tool and explained key components like POM.xml, dependencies, and embedded servers (Tomcat, Jetty, Undertow). The discussion covered logging levels, including error, warn, info, debug, and trace, and explained how to use different logging methods like logger.info() instead of system.out.println() to get properly formatted logs with class names and other metadata. The instructor also explained why some logging levels might not be visible in the output, which was left as an open question for the audience to consider.
+
+
+Java Logging Levels Overview
+Usha explained different logging levels in Java, including error, warning, info, debug, and trace, and their conventional uses. She demonstrated how to use placeholders in logging statements and provided examples of when to use each level, such as error logs for exceptions and warning logs for potential future issues. Usha also showed how changing the logging level affects which messages are displayed and explained the difference between info and debug logs, noting that debug logs provide more detailed information for troubleshooting.
+
+
+Trace Logs and Load Balancing
+GeeksforGeeks explained the concept of trace logs, describing them as logs generated in listener or watcher-related scenarios where entities continuously emit heartbeat messages to indicate they are running or listening for requests. The discussion included an explanation of how load balancers work in distributed systems, comparing them to traffic police who route requests to available servers and monitor server health through heartbeats. Kaushal asked two questions about logging levels and JVM memory configuration, with GeeksforGeeks agreeing to demonstrate the difference between debug and trace logs by changing the logging level in Spring Boot and explaining that non-heap memory requirements would prevent a pod from starting if JVM memory settings exceeded available resources.
+
+
+Application Logging Levels Discussion
+GeeksforGeeks explained how memory is used in application development, discussing the difference between stack memory for function calls and static memory for variables. They demonstrated how changing the logging level from info to debug significantly increased the number of logs displayed, from 9 info-level logs to 261 debug-level logs. The discussion covered different logging levels and their purposes, with GeeksforGeeks explaining that trace logs are primarily for heartbeats and tracking specific flows, while debug logs provide detailed information about application operations.
+
+
+Production Logging Best Practices
+GeeksforGeeks discussed logging levels in production environments, explaining that most companies use info or warning levels rather than debug due to performance and cost considerations, especially for large-scale systems like Amazon or Zomato. They clarified that debug logs are appropriate for lower environments like staging or development where testing occurs, but should be avoided in production environments where storage costs and performance impact need to be minimized. GeeksforGeeks advised that if testing requires debug logs, it should be done in lower environments before deployment to production.
+
+
+Production Logging Best Practices
+The discussion focused on logging best practices in production environments. GeeksforGeeks explained that while debug logs provide more detailed information for troubleshooting, they can generate excessive data that may increase costs and make it difficult to identify critical issues. The speaker emphasized that logging levels should be determined based on scale rather than business model type, and recommended using appropriate logging levels (info vs debug) based on the volume of requests. The conversation also covered how to configure different logging levels for different environments using application profiles, and included a demonstration of how to use the network tab in browser developer tools to inspect API requests.
+
+
+Spring MVC Request Mapping Discussion
+The discussion focused on understanding how Spring MVC handles request mapping and dispatcher servlet functionality. GeeksforGeeks explained that the RequestMappingHandlerMapping class in Spring Web MVC creates a mapping between URL paths and controller methods, and demonstrated how different request methods (GET, POST, etc.) can map to the same URL path. The conversation revealed that when multiple methods with the same path but different request methods are defined, Spring fails to start the application due to conflicting bean definitions in its registry before runtime. GeeksforGeeks also explained the concept of non-static methods in controllers and introduced the topic of how Spring creates objects without explicit instantiation, leading into a discussion about inversion of control.
+
+
+Spring Boot Controller Initialization Challenges
+Aditya and Ankita discussed the challenges of manually initializing multiple REST controllers in an application. GeeksforGeeks then explained the concept of inversion of control using a hypothetical scenario about commuting to work, comparing it to Spring Boot's object creation process. The discussion covered how Spring Boot manages object lifecycle through annotations like @Component and @Controller, with GeeksforGeeks demonstrating that objects are automatically created by Spring Boot during application startup.
+
+
+Spring Boot Annotations Explained
+GeeksforGeeks explained the difference between using component annotation versus controller annotation in Spring Boot. When using only component annotation, the application returns a 404 error because URL-to-function mapping is not established, as controller annotations are required for this mapping. GeeksforGeeks clarified that REST Controller combines Controller and ResponseBody annotations, enabling automatic JSON response formatting, while regular Controller requires additional configuration for response rendering. The discussion also covered the MVC architecture components, explaining that the "view" in Spring refers to the ability to render responses in specific formats rather than the frontend interface.
+
+
+Spring Boot JSON Conversion Overview
+GeeksforGeeks explained the concept of Spring Boot, focusing on how Java objects are converted to JSON using Spring Web MVC's request-response body method processor. The discussion covered how Spring Boot creates objects and the importance of annotations in object creation. GeeksforGeeks outlined the agenda for the next class, which will cover beans, IOC container, dependency injection, auto-configuration, and Spring profiles. Kratik requested the WhatsApp group link, which GeeksforGeeks agreed to share.

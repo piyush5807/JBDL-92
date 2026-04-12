@@ -1,0 +1,51 @@
+Quick recap
+
+The meeting focused on Spring profiling and Spring Boot's auto-configuration capabilities. Brian explained how to set up different profiles for development, staging, and production environments, demonstrating how to configure properties in application.properties files and activate specific profiles using the spring.profiles.active property. He showed how Spring Boot handles predefined properties through configuration metadata JSON files, explaining the structure and purpose of these files. The discussion covered how custom properties can be defined using the @ConfigurationProperties annotation, allowing developers to group related configuration settings into classes. Brian also explained the concept of source types and how Spring Boot automatically configures beans based on these types. The session concluded with a brief overview of upcoming topics, including the creation of CRUD APIs using in-memory data storage and the potential use of various databases including MySQL, Oracle, or PostgreSQL.
+
+
+Next steps
+- GeeksforGeeks: Push the current code to GitHub after the class.
+
+Summary
+
+Spring Profiling and Configuration Management
+Brian led a discussion on Spring profiling and logging levels, explaining the challenges of managing different configurations across environments like production, staging, and development. He provided examples of how database and application server requirements might differ between environments, emphasizing the need for flexible configurations without changing code. The conversation included a brief discussion about user counts for platforms like Zomato, though the specific numbers were not finalized.
+
+
+Zomato Database Infrastructure Requirements
+The discussion focused on database infrastructure requirements for Zomato's development environments. GeeksforGeeks estimated that Zomato has approximately 10 million daily active users, suggesting one-third of India's population uses the app daily. The conversation centered on whether to hardcode database URLs in code or use properties files, with GeeksforGeeks questioning whether if-else checks could be avoided for different environment configurations. The discussion highlighted the need to balance database size and cost considerations for different environments while maintaining appropriate separation between production and development settings.
+
+
+Spring Boot Profiling Configuration
+GeeksforGeeks explained Spring Boot profiling, demonstrating how to create different configuration profiles for different environments. They showed how to define multiple profiles in separate property files (like application-prod.properties and application-staging.properties) and how to activate specific profiles using the spring.profiles.active property. When multiple profiles are active, Spring Boot uses the properties from the last-defined profile in the list, with properties from higher-priority profiles overriding those from lower-priority profiles.
+
+
+Spring Boot Multiple Profiles Demonstration
+GeeksforGeeks explained Spring Boot's behavior with multiple active profiles, noting that it performs a union operation, taking all properties from active profiles and using the last defined value for any duplicate properties. He demonstrated how to run the application with specific profiles both through IDE environment variables and terminal commands using `java -jar`, emphasizing the need to package the application first with `mvn package`. The discussion included troubleshooting audio issues at the beginning and concluded with instructions on how to update code changes in the JAR file by running `mvn clean package`.
+
+
+Spring Boot Deployment Process
+GeeksforGeeks explained how to package and run a Spring Boot application using Maven commands, demonstrating the use of profiles for different environments like staging and production. They showed how to use the `spring.profiles.active` property to specify which profile to run with, and explained the process of deployment by copying the JAR file from local to a virtual machine or cloud infrastructure. The discussion included an explanation of how deployment works in modern environments using virtual machines, containers, or cloud services.
+
+
+JAR Deployment Strategy Discussion
+GeeksforGeeks and Kratik discussed deployment strategies for copying JAR files to remote virtual machines. They explored using Git to fetch the latest code instead of copying the JAR file, which would be faster and more efficient. The discussion included details on using Jenkins pipelines and CI/CD pipelines to automate this process by running commands like git pull, Maven package, and java -jar. They also covered the use of active profiles and logging configurations for different environments, explaining how to set these up using environment variables.
+
+
+Spring Boot Configuration System Overview
+Kratik explained Spring Boot's configuration system, focusing on predefined properties and how they work. He demonstrated that while custom properties must be named application.properties, alternative names like myserver.properties can be used by setting the spring.config.name environment variable. Kratik also explained that Spring Boot's auto-configuration capability allows it to understand and use properties like server.port without explicit code references, as these properties are defined in Spring Configuration Metadata JSON files. The discussion included an explanation of how to search for predefined properties in the project scope and how property types must match the expected data types to avoid binding errors.
+
+
+Spring Boot Source Type Configuration
+GeeksforGeeks explained the concept of source type in Spring Boot configuration, describing how it refers to the actual class, function, or variable where a property should be mapped. They clarified that while getter methods are defined to retrieve property values, the source type is what determines where the property value is stored and how it's processed. Kratik asked about the purpose of defining getter methods in the JSON configuration, and GeeksforGeeks explained that these methods are used to handle derived data types that cannot be directly set as primitive values or wrapper classes.
+
+
+Spring Boot Configuration Properties Discussion
+The discussion focused on understanding Spring Boot configuration properties, particularly around getter functions and auto-wiring. Kratik and GeeksforGeeks explained that getter functions are required for accessing final keyword variables outside the class, as they need to be set in the constructor through source methods used by Spring Boot during auto-wiring. They also explored the logging.level property, clarifying that it accepts a map structure to define different logging levels for different packages, with "root" serving as an identifier for applying log levels across all packages rather than specific package names.
+
+Spring Boot Custom Properties Configuration
+Kratik demonstrated how to configure custom properties in Spring Boot by creating a FoodController class with configuration properties for cuisine name and description. He showed how to define these properties in application.properties and how they are injected into the class using setter methods. Kratik explained that Spring Boot's auto-configuration feature allows properties to be defined without explicitly creating beans, making it easier than traditional Spring configuration. He also discussed how auto-configuration handles optional properties, only applying them if defined in the configuration file.
+
+
+Spring Boot Configuration System Overview
+GeeksforGeeks explained Spring Boot's configuration system, demonstrating how properties are structured across multiple files and how custom configuration classes can group related properties together using annotations. The discussion clarified that without a defined configuration class, Spring Boot cannot automatically combine properties with dot notation prefixes into a structured object. GeeksforGeeks announced that the next class will focus on creating CRUD APIs, starting with in-memory storage before moving to databases like MySQL, with flexibility for students to use other database systems if preferred.

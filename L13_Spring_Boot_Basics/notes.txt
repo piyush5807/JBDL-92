@@ -1,0 +1,53 @@
+
+Goal - Reach office on time everyday (Routine)
+
+1. Drive to your office by your own car
+2. Someone drops you in their / your car and you don't have to drive + you don't have to pay to that person
+
+Object creation:
+1. Developer themselves can create an object of a particular class and maintain it's lifecycle
+2. Spring boot creates an object for you, puts in the memory and fetches the object whenever needed,
+   basically spring boot manages the entire lifecycle of the object.
+
+
+Two pillars of spring boot
+1. Inversion of control - the process of creating objects on application startup by spring boot is known as inversion of control
+
+How to communicate to spring boot about creating an object during application startup
+1. @Component annotation either directly or indirectly on top of a class
+
+2. Dependency Injection -
+
+
+
+
+
+
+
+
+
+
+
+---------------------------------------------------
+
+RestController - Controller + ResponseBody
+                              Returns the response in JSON format or some sort of format which client libraries understand
+
+If we use Controller -->
+
+MVC - model view controller
+Model - real life entity which acts like a data point and can be persisted in dbs or any other external storage
+View - Some sort of response rendering capability that developers needs to define
+Controller - Landing point for all the HTTP requests
+
+
+RequestResponseBodyMethodProcessor - this class converts the data from json --> java and vice versa and is
+used when any of the @RequestBody or @ResponseBody is used
+
+
+Agenda for next week:
+1. Beans IOC container
+2. Dependency Injection + diff types of DI
+3. Auto configuration capability of spring boot
+4. Spring profiles :
+5. @Configuration + @Bean + Bean scopes
