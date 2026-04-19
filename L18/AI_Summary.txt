@@ -1,0 +1,19 @@
+Quick recap
+
+This meeting focused on teaching the difference between PUT and PATCH APIs in a Spring Boot employee management system. GeeksforGeeks explained how PUT APIs replace the entire resource with new data, while PATCH APIs allow partial updates by merging new data with existing information. The discussion then moved to the importance of using persistent storage instead of in-memory maps, leading to a demonstration of setting up a MySQL database with Spring Boot. The session covered the MVC architecture pattern, explaining how to structure code into controller, service, and repository layers. GeeksforGeeks demonstrated creating database tables programmatically and explained the auto-increment feature in MySQL, including how it works with primary keys. The conversation ended with a brief discussion about when to use file storage versus databases for data persistence.
+
+Next steps
+
+GeeksforGeeks
+- Push the current code to GitHub after the class.
+- Continue with the application in the next session, including completing the Post API and Get API functionality for the employee database integration.
+- Start with Spring Data JPA and Hibernate in the next week's sessions.
+
+Summary
+
+PUT vs PATCH API Differences
+GeeksforGeeks explained the differences between PUT and PATCH APIs in an employee management system project. He demonstrated how PUT APIs replace the entire employee object with new data, while PATCH APIs only update specific fields based on the incoming request. GeeksforGeeks showed examples of both API implementations and discussed the pros and cons of each approach. He emphasized that the choice between PUT and PATCH depends on the requirements and contract with the client, and both approaches are commonly used in practice.
+
+
+Database Transition and Persistence Planning
+The discussion focused on transitioning from in-memory data storage to a persistent database system. GeeksforGeeks explained the need for database persistence to prevent data loss when the server restarts, introducing the concept of non-volatile storage compared to volatile memory. The team discussed the MVC architecture and its implementation, including the separation of controller, service, and repository layers. They explored database table creation using MySQL, including the implementation of auto-increment primary keys. The session concluded with a discussion on when to create database tables, emphasizing the use of "create table if not exists" to handle potential duplicate table errors.

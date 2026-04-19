@@ -1,0 +1,48 @@
+
+
+MVC - Model View Controller
+
+
+Controller - Place to list down the APIs
+Model - Represents the real world entity that we store in the databases
+
+
+View - Response that we return from controller
+
+      (DTOs)                                                            (Model)
+    --> Controller  -->     Service     -->     Repository                -->         Data Storage
+                            Business        (Data Access Object)
+                            Logic                 (DAO)
+
+
+    POST /v1/bookings       1. Is the hotel available or not ?
+                                API call to some hotel service - microservice
+                                Function call to other service class i.e hotelService - monolith
+                            2. Pass on the user details and confirm the booking
+                            3. Create a booking with status as unconfirmed... --> repository
+                            4. Update booking status - confirmed (Optional)
+                            ... return booking id
+
+
+ ------------------------------------------------------------------
+
+1. Every table in a sql db needs to have a primary key ? Yes / No
+2. Auto increment
+
+    A. Last seen value + 1              ==> 8   O(1)
+    B. Maximum value + 1                ==> 11  O(1)
+    C. Minimum not covered so far       ==> 3
+    D. Total number of records + 1      ==> 5   O(1)
+    E. None of the above
+
+Underlying db maintains a sequence or a table to store the next id which is to be assigned:
+As soon as you insert a record, this counter is increased
+
+When we inserted 100 in the table, counter --> 101
+Let's say we inserted 50 after inserting 100    --> 101
+Let's say we inserted 200 after inserting 50    --> 201
+
+ORM - Object relation mapping
+
+Java object
+Relation is Record/Row in a SQL Table
