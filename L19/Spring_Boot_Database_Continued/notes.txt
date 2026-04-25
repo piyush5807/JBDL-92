@@ -1,0 +1,117 @@
+
+
+MVC - Model View Controller
+
+
+Controller - Place to list down the APIs
+Model - Represents the real world entity that we store in the databases
+
+
+View - Response that we return from controller
+
+      (DTOs)                                                            (Model)
+    --> Controller  -->     Service     -->     Repository                -->         Data Storage
+                            Business        (Data Access Object)
+                            Logic                 (DAO)
+
+
+    POST /v1/bookings       1. Is the hotel available or not ?
+                                API call to some hotel service - microservice
+                                Function call to other service class i.e hotelService - monolith
+                            2. Pass on the user details and confirm the booking
+                            3. Create a booking with status as unconfirmed... --> repository
+                            4. Update booking status - confirmed (Optional)
+                            ... return booking id
+
+
+ ------------------------------------------------------------------
+
+1. Every table in a sql db needs to have a primary key ? Yes / No
+2. Auto increment
+
+    A. Last seen value + 1              ==> 8   O(1)
+    B. Maximum value + 1                ==> 11  O(1)
+    C. Minimum not covered so far       ==> 3
+    D. Total number of records + 1      ==> 5   O(1)
+    E. None of the above
+
+Underlying db maintains a sequence or a table to store the next id which is to be assigned:
+As soon as you insert a record, this counter is increased
+
+When we inserted 100 in the table, counter --> 101
+Let's say we inserted 50 after inserting 100    --> 101
+Let's say we inserted 200 after inserting 50    --> 201
+
+ORM - Object relation mapping
+
+Java object
+Relation is Record/Row in a SQL Table
+
+--------------------------------------------------------------------
+
+Execute a SQL Query on the db server (via sql shell or any other client), the following steps are executed:
+
+1. Compile your query
+2. Execution of the query takes place
+
+insert into employee(firstName, lastName) VALUES ('Jim', 'Anderson'); - q1  static queries
+    Compilation of query - X ms
+    Execution takes - Y ms
+
+insert into employee(firstName, lastName) VALUES ('John', 'Doe'); - q2
+    Compilation of query - X ms
+    Execution takes - Y ms
+
+
+------------------
+
+Total time taken - 2 * (X + Y)
+
+---------------------------------------------------------------------------
+insert into employee(firstName, lastName) VALUES (?, ?) - dynamic queries
+insert into employee(firstName, lastName) VALUES (?, ?) -
+
+
+sql server -- caches the dynamic queries (prepared statements) so that recompilation is not required always
+
+Cache - Expiry - 15 mins
+
+100 employees - X + 100 * y + Time for retrieving the dynamic query from cache (in nano ms)
+
+
+
+
+
+
+
+INSERT INTO employee(firstName, lastName, email, age, country, gender, createdAt, lastUpdatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+
+INSERT INTO employees(firstName, lastName, email, age, country, gender, createdAt, lastUpdatedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+
+
+-- insert --> get --> increase my API's latency
+
+
+Problems & Challenges with this code:
+1. No id coming in the response on employee creation
+2. Schema is not flexible, as in whenever we need to add a new column, we don't have to update the schema programatically
+3. Even if we figure out a way to update the schema (i.e via alter table commands), we still need to update the entire code
+to accomodate the new incoming field or the outgoing field (in case of dropping off a column)
+4. The queries that we have been writing are difficult to scale (i.e when the data grows bigger, it will be difficult for us to manage all the sql queries ourself)
+
+5. Error Prone -- we are converting from object --> relation (insert)
+                  we are converting from relation --> object (select)
+
+6. We are not sure that the queries we are writing are optimized...
+
+ORM frameworks --> Object relation mapper
+
+
+
+
+
+
+
+
+
+

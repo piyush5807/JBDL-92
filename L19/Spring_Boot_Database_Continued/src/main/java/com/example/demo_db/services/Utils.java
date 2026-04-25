@@ -1,0 +1,89 @@
+package com.example.demo_db.services;
+import com.example.demo_db.dtos.requests.EmployeeRequest;
+import com.example.demo_db.dtos.responses.EmployeeResponse;
+import com.example.demo_db.models.Employee;
+import org.springframework.stereotype.Component;
+
+import java.util.Date;
+import java.util.UUID;
+
+@Component
+public class Utils {
+
+    public String generateEmployeeId() {
+        return UUID.randomUUID().toString();
+    }
+
+    // DTO - Data transfer object
+    public Employee convertToEmployee(EmployeeRequest employeeRequest, boolean isUpdate) {
+        Employee employee = new Employee();
+        employee.setFirstName(employeeRequest.getFirstName());
+        employee.setLastName(employeeRequest.getLastName());
+        employee.setEmail(employeeRequest.getEmail());
+        employee.setCountry(employeeRequest.getCountry());
+        employee.setAge(employeeRequest.getAge());
+        employee.setGender(employeeRequest.getGender());
+
+        // Not provided by client, added by the server
+        employee.setLastUpdatedAt(new Date());
+        if(!isUpdate){
+            employee.setCreatedAt(new Date());
+        }
+
+        return employee;
+    }
+
+    public Employee convertToEmployee(EmployeeRequest employeeRequest, Employee employee, boolean isUpdate){
+        if(employee == null){
+            return convertToEmployee(employeeRequest, isUpdate);
+        }
+
+        // You can use some library to the merging part.
+        // Old data - saved in the employeeMap
+        // New data - employeeRequest
+
+
+        if(employeeRequest.getAge() != null){
+            employee.setAge(employeeRequest.getAge());
+        }
+
+        if(employeeRequest.getCountry() != null){
+            employee.setCountry(employeeRequest.getCountry());
+        }
+
+        if(employeeRequest.getEmail() != null){
+            employee.setEmail(employeeRequest.getEmail());
+        }
+
+        if(employeeRequest.getGender() != null){
+            employee.setGender(employeeRequest.getGender());
+        }
+
+        if(employeeRequest.getFirstName() != null){
+            employee.setFirstName(employeeRequest.getFirstName());
+        }
+
+        if(employeeRequest.getLastName() != null){
+            employee.setLastName(employeeRequest.getLastName());
+        }
+
+        employee.setLastUpdatedAt(new Date());
+        return employee;
+    }
+
+    public EmployeeResponse convertToEmployeeResponse(Employee employee) {
+        EmployeeResponse employeeResponse = new EmployeeResponse();
+        employeeResponse.setId(employee.getId());
+        employeeResponse.setFirstName(employee.getFirstName());
+        employeeResponse.setLastName(employee.getLastName());
+        employeeResponse.setEmail(employee.getEmail());
+        employeeResponse.setCountry(employee.getCountry());
+        employeeResponse.setAge(employee.getAge());
+        employeeResponse.setGender(employee.getGender());
+        employeeResponse.setCreatedAt(employee.getCreatedAt());
+        employeeResponse.setLastUpdatedAt(employee.getLastUpdatedAt());
+
+        return employeeResponse;
+
+    }
+}
