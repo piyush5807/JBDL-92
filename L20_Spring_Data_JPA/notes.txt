@@ -1,0 +1,43 @@
+
+
+Builder annotation
+    -- creates 2 things: 1 is a static function in the main class i.e Book.java with the name as builder and the following signature
+            public static BookBuilder builder(){
+                return new BookBuilder();
+            }
+    -- 2nd thing which this annotation generates is an inner class in the main class i.e Book.java with the name
+       as BookBuilder where the same member variables are defined as the outer/main class. And the inner class also
+       have setter methods + 1 build function.
+    -- setter functions inside the BookBuilder class: they are not only setters, but they are special in the sense
+       that along with the setting the member variables of the inner class, they also return the instance of bookBuilder class
+
+
+----------------------------
+
+
+Developer (Book.Java)       -->     JPA + Hibernate         -->         Table of Relational DB
+        name                            name                                    id
+        pages                           pages                                   ...
+        author                          author                                  ...
+        genre                           genre
+                                        createdAt
+                                        updatedAt
+
+
+------------------------------------
+
+DDL Modes
+1. Create - deletes the schema at the start of the session
+2. Create-drop -- deletes the schema at the end of the session
+3. Create-only -- it doesn't delete the schema but tries to create on every start of the session : from application-server --> db-server
+
+4. validate -- does not create or delete, just validates
+5. none -- disables all DDL handling
+
+6. update --
+7. truncate --
+
+8. drop -- drops the schema, doesn't create it
+
++1 addition
+-1 removal
