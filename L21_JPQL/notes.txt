@@ -1,0 +1,114 @@
+
+
+Builder annotation
+    -- creates 2 things: 1 is a static function in the main class i.e Book.java with the name as builder and the following signature
+            public static BookBuilder builder(){
+                return new BookBuilder();
+            }
+    -- 2nd thing which this annotation generates is an inner class in the main class i.e Book.java with the name
+       as BookBuilder where the same member variables are defined as the outer/main class. And the inner class also
+       have setter methods + 1 build function.
+    -- setter functions inside the BookBuilder class: they are not only setters, but they are special in the sense
+       that along with the setting the member variables of the inner class, they also return the instance of bookBuilder class
+
+
+----------------------------
+
+
+Developer (Book.Java)       -->     JPA + Hibernate         -->         Table of Relational DB
+        name                            name                                    id
+        pages                           pages                                   ...
+        author                          author                                  ...
+        genre                           genre
+                                        createdAt
+                                        updatedAt
+
+
+------------------------------------
+
+DDL Modes
+1. Create - deletes the schema at the start of the session
+2. Create-drop -- deletes the schema at the end of the session
+3. Create-only -- it doesn't delete the schema but tries to create on every start of the session : from application-server --> db-server
+
+4. validate -- does not create or delete, just validates
+5. none -- disables all DDL handling
+
+6. update --
+7. truncate --
+
+8. drop -- drops the schema, doesn't create it
+
++1 addition
+-1 removal
+
+-------------------------------------------------------
+
+CAP -
+
+Consistency
+Availability
+Partition Tolerance -
+
+
+-----------
+
+    /**
+     * 1. JPQL - Java Persistence Query Language
+     * This is the query that we write keeping java class into consideration
+     *
+     *
+     * 2. Native Query - This is the query that we write keeping sql table into consideration
+     *
+     *
+     * Diff b/w native and JPQL queries ?
+     * 1. In case of JPQL, there's an overhead of converting the sql query that we have written to a sql query that
+     * Hibernate will execute on the underlying db whereas in case of native query, hibernate won't interfere in modifying
+     * the query syntax.
+     * Conclusion: Native queries are slightly faster because there's no conversion overhead
+     * Native is better
+     *
+     * 2. A developer has more control over the query in case of JPQL because even if there are some modifications at the
+     * database server level, i.e server is changed from mysql --> postgres, the query will not change
+     * JPQL is better
+     *
+     * 3. With JPQL queries, a developer gets to know during the application startup itself if there are any wrong queries
+     * in the code, whereas in case of native queries, this is highlighted on the runtime.
+     *
+     * -----------------------------------------------------------------------------------------------
+     * Observations:
+     * 1. Even though the native sql query was wrong, but still the server did start and didn't any warning or error about the
+     * query being wrong, instead on the runtime the query executed and the underlying db threw exception
+     *
+     * 2. When the JPQL query was wrong, the spring boot application didn't even start and hibernate threw an exception
+     * that the query is wrong
+     *
+     * org.hibernate.query.sqm.PathElementException
+     * org.hibernate.query.sqm.UnknownEntityException
+     */
+
+Spring data JPA has a capability of converting a function name --> sql query
+Constraint : You should write the function name in terms java classes and fields not sql table and column names
+
+--------------------
+
+Minor Project 1 - Digital Library
+
+1. Composite keys
+2. Hibernate's entity manager
+3. Database transactions in short
+4. Main core logic of the project
+
+---------------------------------
+
+Minor Project + Hibernate + Spring Data JPA - 3
+Unit Testing - 1
+Redis - 1/2
+Spring security - 4 (1 will be for Oauth 2)
+
+--- Uncertain if the classes continue on weekends
+Minor Project 2 - 1
+Kafka - 1/2
+Major Project - 2
+Microservice - 1
+MCP Servers - 1/2
