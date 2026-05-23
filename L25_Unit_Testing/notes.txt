@@ -1,0 +1,22 @@
+
+Today - Unit testing - JUnit and Mockito
+Tomorrow + 30th May - Redis
+
+From 31st May onwards - Spring security + Minor Project 2 + Kafka + Major Project
+
+
+-- Unit testing --
+
+Sample test code for a given smaller actual code base that is atomic in nature
+
+Generally, people try to write UTs for logical operations / business logic which includes
+most of your service classes, utils classes or any other class having some business logic
+
+
+Mockito - helps you generate some mock data during your testing so that you don't have to fetch the real data.
+UT happens on mock data and the real data should never be touched.
+
+Note: You should not change the code logic / syntax / behaviour just to fit in the test case correctness.
+
+@InjectMocks - is used to create a real object of some main business logic class in your test class
+@Mock - also creates an object in the test class + attaches the current object with any injectMocks annotated object as well in the main classes
